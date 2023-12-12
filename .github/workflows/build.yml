@@ -11,7 +11,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build-esp:
+  build:
     runs-on: ubuntu-latest
     steps:
     - name: Setup Python
@@ -33,4 +33,11 @@ jobs:
       with:
         name: NINA_W102-${{ github.sha }}
         path: |
+          NINA_W102*.bin
+
+    - name: Upload Release Asset
+      uses: softprops/action-gh-release@v1
+      if: ${{ github.event_name == 'release' }}
+      with:
+        files: |
           NINA_W102*.bin
