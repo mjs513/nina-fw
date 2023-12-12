@@ -2,6 +2,17 @@
 
 import sys;
 
+
+def extract_firmware_version():
+	with open('main/CommandHandler.cpp', 'r') as file:
+		for line in file:
+			if 'const char FIRMWARE_VERSION[6] = ' in line:
+				# The line format is `const char FIRMWARE_VERSION[6] = "1.7.6";`
+				# Split by double quote and get the second element
+				version = line.split('"')[1]
+				return version
+
+
 booloaderData = open("build/bootloader/bootloader.bin", "rb").read()
 partitionData = open("build/partitions.bin", "rb").read()
 appData = open("build/nina-fw.bin", "rb").read()
@@ -31,7 +42,9 @@ for i in range(0, len(certsData)):
 # zero terminate the pem file
 outputData[0x10000 + len(certsData)] = 0
 
-outputFilename = "NINA_W102-1.7.6.bin"
+version = extract_firmware_version()
+outputFilename = f"NINA_W102-{version}.bin"
+
 if (len(sys.argv) > 1):
 	outputFilename = sys.argv[1]
 
