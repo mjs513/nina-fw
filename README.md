@@ -15,10 +15,8 @@ Contributors who follow the [Code of Conduct](https://github.com/adafruit/nina-f
 are welcome to submit pull requests and they will be promptly
 reviewed by project admins. Please join the [Discord](https://adafru.it/discord) too.
 
-The NINA firmware version needs to be updated in four places in this repo:
+The NINA firmware version needs to be updated in two places in this repo:
 1. CommandHandler.cpp
-1. combine.py
-1. Makefile
 1. CHANGELOG
 
 ## Building
