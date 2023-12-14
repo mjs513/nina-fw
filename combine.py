@@ -23,7 +23,6 @@ certsData = b""
 with open("certificates/data/roots.pem", "rb") as certs_file:
     in_cert = False
     for line in certs_file:
-        print(line)
         if line.startswith(b"-----BEGIN CERTIFICATE-----"):
             in_cert = True
         if in_cert:
