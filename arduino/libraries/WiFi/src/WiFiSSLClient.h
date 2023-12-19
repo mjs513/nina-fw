@@ -62,6 +62,9 @@ public:
   const char *pers = "esp32-tls";
 
 private:
+  int connect(const char* host, uint16_t port, bool sni);
+
+private:
   static const char* ROOT_CAs;
   const char *_cert; // user-provided certificate
   const char *_private_key; // user-provided private
