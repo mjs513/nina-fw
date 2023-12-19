@@ -1,3 +1,7 @@
+Adafruit's Arduino NINA-W102 firmware 1.7.7 - 2023.09.20
+
+* Change to use adafruit/certificates repo for roots.pem
+
 Adafruit's Arduino NINA-W102 firmware 1.7.5 - 2023.07.21
 
 * Fix for bug in NINA-W102 firmware 1.7.5 not allowing uploads on Windows/Linux
