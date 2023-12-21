@@ -45,7 +45,7 @@ int errno;
 #include "Arduino.h"
 
 // Note: following version definition line is parsed by python script. Please don't change its format (space, indent) only update its version number.
-const char FIRMWARE_VERSION[6] = "1.7.7";
+const char FIRMWARE_VERSION[6] = "1.8.0";
 
 // Optional, user-defined X.509 certificate
 char CERT_BUF[1300];
@@ -956,6 +956,7 @@ int getIdxChannel(const uint8_t command[], uint8_t response[])
   return 6;
 }
 
+// TODO Adafruit: conflict command ID with setClientCert(), currently not used
 int setEnt(const uint8_t command[], uint8_t response[])
 {
   const uint8_t* commandPtr = &command[3];
@@ -1245,7 +1246,8 @@ int getDigitalRead(const uint8_t command[], uint8_t response[])
   return 6;
 }
 
-#if 1
+#if 1 
+// Adafruit implementation
 int getAnalogRead(const uint8_t command[], uint8_t response[])
 {
   uint8_t pin = command[4];
@@ -1262,6 +1264,7 @@ int getAnalogRead(const uint8_t command[], uint8_t response[])
 }
 
 #else
+// Arduino implemenation ADC is 2 bytes
 extern "C" {
 #include <driver/adc.h>
 }

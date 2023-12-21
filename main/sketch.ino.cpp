@@ -140,8 +140,8 @@ void setupBluetooth() {
   uart_set_pin(UART_NUM_1, 1, 3, 33, 12); // TX, RX, RTS, CTS
 #else
   uart_set_pin(UART_NUM_1, 23, 12, 18, 5);
-  uart_set_hw_flow_ctrl(UART_NUM_1, UART_HW_FLOWCTRL_CTS_RTS, 5);
 #endif
+  uart_set_hw_flow_ctrl(UART_NUM_1, UART_HW_FLOWCTRL_CTS_RTS, 5);
 
   if (debug)  ets_printf("setup controller\n");
 
