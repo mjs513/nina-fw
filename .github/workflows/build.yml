@@ -56,7 +56,7 @@ jobs:
 
     - name: Upload Release Asset
       uses: softprops/action-gh-release@v1
-      if: ${{ github.event_name == 'release' }} && matrix.config == 'release'
+      if: github.event_name == 'release' && matrix.config == 'release'
       with:
         files: |
           NINA_W102*.bin
