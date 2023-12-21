@@ -42,7 +42,11 @@ extern "C" {
 
 #define SPI_BUFFER_LEN SPI_MAX_DMA_LEN
 
+#ifdef NINA_DEBUG
+int debug = 1;
+#else
 int debug = 0;
+#endif
 
 uint8_t* commandBuffer;
 uint8_t* responseBuffer;
