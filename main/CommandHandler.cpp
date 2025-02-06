@@ -44,7 +44,7 @@ int errno;
 #endif
 
 // Note: following version definition line is parsed by python script. Please don't change its format (space, indent) only update its version number.
-const char FIRMWARE_VERSION[6] = "1.8.0";
+const char FIRMWARE_VERSION[] = "2.0.0-adafruit";
 
 // ADAFRUIT-CHANGE: user-supplied cert and key
 // Optional, user-defined X.509 certificate
@@ -1243,7 +1243,7 @@ int getDigitalRead(const uint8_t command[], uint8_t response[])
   return 6;
 }
 
-#if 1 
+#if 1
 // ADAFRUIT-CHANGE: Adafruit-style analog read support
 int getAnalogRead(const uint8_t command[], uint8_t response[])
 {
