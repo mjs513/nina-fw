@@ -113,4 +113,5 @@ void SPISClass::handleSetupComplete()
   xSemaphoreGiveFromISR(_readySemaphore, NULL);
 }
 
+// ADAFRUIT-CHANGE: different pin
 SPISClass SPIS(VSPI_HOST, 1, 14, 23, 18, 5, 33);

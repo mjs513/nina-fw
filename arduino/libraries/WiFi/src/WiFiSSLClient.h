@@ -26,6 +26,11 @@
 #include <mbedtls/ctr_drbg.h>
 #include <mbedtls/error.h>
 
+// ADAFRUIT-CHANGE: enable mbedtls logging if requested.
+#ifdef CONFIG_MBEDTLS_DEBUG
+#include <mbedtls/esp_debug.h>
+#endif
+
 #include <Arduino.h>
 // #include <Client.h>
 // #include <IPAddress.h>

@@ -25,6 +25,7 @@
 #include <WiFiServer.h>
 #include <WiFiSSLClient.h>
 #include <WiFiUdp.h>
+// ADAFRUIT-CHANGE: Adafruit-style enterprise wifi support
 #include "esp_wpa2.h"
 
 #include "CommandHandler.h"
@@ -42,11 +43,10 @@
 int errno;
 #endif
 
-#include "Arduino.h"
-
 // Note: following version definition line is parsed by python script. Please don't change its format (space, indent) only update its version number.
 const char FIRMWARE_VERSION[6] = "1.8.0";
 
+// ADAFRUIT-CHANGE: user-supplied cert and key
 // Optional, user-defined X.509 certificate
 char CERT_BUF[1300];
 bool setCert = 0;
@@ -687,17 +687,14 @@ int startClientTcp(const uint8_t command[], uint8_t response[])
     }
   } else if (type == 0x02) {
     int result;
+    // ADAFRUIT-CHANGE: user-supplied cert
+    if (setCert && setPSK) {
+      tlsClients[socket].setCertificate(CERT_BUF);
+      tlsClients[socket].setPrivateKey(PK_BUFF);
+    }
     if (host[0] != '\0') {
-      if (setCert && setPSK) {
-        tlsClients[socket].setCertificate(CERT_BUF);
-        tlsClients[socket].setPrivateKey(PK_BUFF);
-      }
       result = tlsClients[socket].connect(host, port);
     } else {
-      if (setCert && setPSK) {
-        tlsClients[socket].setCertificate(CERT_BUF);
-        tlsClients[socket].setPrivateKey(PK_BUFF);
-      }
       result = tlsClients[socket].connect(ip, port);
     }
 
@@ -1247,7 +1244,7 @@ int getDigitalRead(const uint8_t command[], uint8_t response[])
 }
 
 #if 1 
-// Adafruit implementation
+// ADAFRUIT-CHANGE: Adafruit-style analog read support
 int getAnalogRead(const uint8_t command[], uint8_t response[])
 {
   uint8_t pin = command[4];
@@ -1290,6 +1287,7 @@ int getAnalogRead(const uint8_t command[], uint8_t response[])
 }
 #endif
 
+// ADAFRUIT-CHANGE: Adafruit-style Enterprise support
 int wpa2EntSetIdentity(const uint8_t command[], uint8_t response[]) {
   char identity[32 + 1];
 
@@ -2225,6 +2223,7 @@ const CommandHandlerType commandHandlers[] = {
   disconnect, NULL, getIdxRSSI, getIdxEnct, reqHostByName, getHostByName, startScanNetworks, getFwVersion, NULL, sendUDPdata, getRemoteData, getTime, getIdxBSSID, getIdxChannel, ping, getSocket,
 
   // 0x40 -> 0x4f
+  // ADAFRUIT-CHANGE
   // 0x40: conflict with arduino's setEnt()
   setClientCert /* Arduino's setEnt */, setCertKey, NULL, NULL, sendDataTcp, getDataBufTcp, insertDataBuf, NULL, NULL, NULL, wpa2EntSetIdentity, wpa2EntSetUsername, wpa2EntSetPassword, wpa2EntSetCACert, wpa2EntSetCertKey, wpa2EntEnable,
 

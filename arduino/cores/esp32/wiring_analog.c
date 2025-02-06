@@ -18,6 +18,7 @@
 */
 
 #include <driver/ledc.h>
+// ADAFRUIT-CHANGE: analogRead support
 #include <driver/adc.h>
 #include <esp_adc_cal.h>
 #include <soc/adc_channel.h>
@@ -38,6 +39,7 @@ void analogWrite(uint32_t pin, uint32_t value)
 
   ledc_channel_config_t ledc_conf = {
     .channel = (pin % 7),
+    // ADAFRUIT-CHANGE: ensure full spread of duty cycle
     .duty = (value << 2) | ((value & 0xC0) >> 6),
     .gpio_num = pin,
     .intr_type = LEDC_INTR_DISABLE,
@@ -47,6 +49,7 @@ void analogWrite(uint32_t pin, uint32_t value)
   ledc_channel_config(&ledc_conf);
 }
 
+// ADAFRUIT-CHANGE: analogRead support
 int analogRead(uint32_t pin, uint32_t atten)
 {
   #define DEFAULT_VREF 1100

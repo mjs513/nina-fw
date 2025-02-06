@@ -63,6 +63,10 @@ int WiFiSSLClient::connect(const char* host, uint16_t port, bool sni)
     mbedtls_ssl_init(&_sslContext);
     mbedtls_ctr_drbg_init(&_ctrDrbgContext);
     mbedtls_ssl_config_init(&_sslConfig);
+// ADAFRUIT-CHANGE: enable mbedtls logging if requested.
+#ifdef CONFIG_MBEDTLS_DEBUG
+    mbedtls_esp_enable_debug_log(&_sslConfig, 2);
+#endif
     mbedtls_entropy_init(&_entropyContext);
     mbedtls_x509_crt_init(&_caCrt);
     mbedtls_net_init(&_netContext);

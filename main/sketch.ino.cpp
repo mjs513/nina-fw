@@ -112,7 +112,7 @@ void setup() {
 
   pinMode(5, INPUT);
   if (digitalRead(5) == LOW) {
-    if (debug)  ets_printf("*** BLUETOOTH ON\n");
+    if (debug) ets_printf("*** BLUETOOTH ON\n");
 
     setupBluetooth();
   } else {
@@ -122,6 +122,7 @@ void setup() {
   }
 }
 
+// ADAFRUIT-CHANGE: AirLift conditionalization
 #define AIRLIFT 1
 
 void setupBluetooth() {
