@@ -44,7 +44,7 @@ int errno;
 #endif
 
 // Note: following version definition line is parsed by python script. Please don't change its format (space, indent) only update its version number.
-const char FIRMWARE_VERSION[] = "2.0.0-adafruit";
+const char FIRMWARE_VERSION[6] = "2.0.0";
 
 // ADAFRUIT-CHANGE: user-supplied cert and key
 // Optional, user-defined X.509 certificate
