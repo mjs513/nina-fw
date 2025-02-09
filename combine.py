@@ -7,8 +7,8 @@ import sys
 def extract_firmware_version():
 	with open('main/CommandHandler.cpp', 'r') as file:
 		for line in file:
-			if 'const char FIRMWARE_VERSION[6] = ' in line:
-				# The line format is `const char FIRMWARE_VERSION[6] = "2.0.0adafruit";`
+			if 'const char FIRMWARE_VERSION[] = ' in line:
+				# The line format is `const char FIRMWARE_VERSION[] = "2.0.0-adafruit";`
 				# Split by double quote and get the second element
 				version = line.split('"')[1]
 				return version

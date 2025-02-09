@@ -44,7 +44,9 @@ int errno;
 #endif
 
 // Note: following version definition line is parsed by python script. Please don't change its format (space, indent) only update its version number.
-const char FIRMWARE_VERSION[6] = "2.0.0";
+// ADAFRUIT-CHANGE: not fixed length
+// The version number obeys semver rules. We suffix with "+adafruit" to distinguish from Arduino NINA-FW.
+const char FIRMWARE_VERSION[] = "2.0.0-rc.0+adafruit";
 
 // ADAFRUIT-CHANGE: user-supplied cert and key
 // Optional, user-defined X.509 certificate
@@ -865,7 +867,8 @@ int getFwVersion(const uint8_t command[], uint8_t response[])
 
   memcpy(&response[4], FIRMWARE_VERSION, sizeof(FIRMWARE_VERSION));
 
-  return 11;
+  // ADAFRUIT-CHANGE: allow variable-length version numbers.
+  return 5 + sizeof(FIRMWARE_VERSION);
 }
 
 int sendUDPdata(const uint8_t command[], uint8_t response[])
