@@ -28,6 +28,7 @@ extern "C" {
 
 extern void analogWrite(uint32_t pin, uint32_t value);
 
+// ADAFRUIT-CHANGE: analogRead support
 extern int analogRead(uint32_t pin, uint32_t atten);
 
 #ifdef __cplusplus
